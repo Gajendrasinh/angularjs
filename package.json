@@ -1,0 +1,23 @@
+{
+  "name": "angular_demo",
+  "version": "1.0.0",
+  "description": "This tutorial is specially designed to help you learn AngularJS as quickly and efficiently as possible.",
+  "main": "nodemon server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gajendrasinh/angularjs.git"
+  },
+  "author": "Gajendrasinh Zala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gajendrasinh/angularjs/issues"
+  },
+  "homepage": "https://github.com/Gajendrasinh/angularjs#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
