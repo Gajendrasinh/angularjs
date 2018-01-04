@@ -12,9 +12,21 @@
 
             var baseURL = "https://jsonplaceholder.typicode.com/";
 
+            //get all list
             service.todoList = function search () {
                 var deferred = $q.defer();        
                 $http.get(baseURL+'todos').success(function(data) {
+                    deferred.resolve(data);
+                }).error(function() {
+                    deferred.reject();
+                });
+                return deferred.promise;
+            };
+
+            //get selected list
+            service.getTodoList = function search (data) {
+                var deferred = $q.defer();        
+                $http.get(baseURL+'todos/'+data).success(function(data) {
                     deferred.resolve(data);
                 }).error(function() {
                     deferred.reject();

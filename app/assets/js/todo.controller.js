@@ -10,6 +10,7 @@
     function toDoCtrl($scope, $http, toDoService) {
 
         $scope.showForm = false;
+        $scope.showSelected = false;
         $scope.form ={};
         $scope.addNewItem = function() {
             $scope.showForm = true;
@@ -19,6 +20,17 @@
             $scope.form = data;
             $scope.showForm = true;
         };
+
+        $scope.getSelectedTask = function(data) {
+            toDoService.getTodoList(data).then(function(data) {
+                $scope.userTask = data;
+                $scope.showSelected = true;
+            })
+            .catch(function() {
+                $scope.error = 'data not fount';
+            });
+        };
+
 
         $scope.submitForm = function(){
            console.log($scope.form.id)

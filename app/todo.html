@@ -1,24 +1,41 @@
-<h2>List of Items <button type="button" class="btn btn-primary pull-right" ng-click="addNewItem()">Add</button></h2>
+<div ng-if="!showSelected">
+    <h2>List of Items <button type="button" class="btn btn-primary pull-right" ng-click="addNewItem()">Add</button></h2>
 
-<form ng-if="showForm" ng-submit="submitForm()">
-    <div class="form-group">
-        <label for="task">Task Title</label>
-        <input type="text" class="form-control" id="task" ng-model="form.title">
-    </div>
-    <div class="form-group">
-        <label class="radio-inline"><input type="radio" name="completed" ng-model="form.completed" ng-value=true>Completed</label>
-        <label class="radio-inline"><input type="radio" name="completed" ng-model="form.completed" ng-value=false checked>Panding</label>
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+    <form ng-if="showForm" ng-submit="submitForm()">
+        <div class="form-group">
+            <label for="task">Task Title</label>
+            <input type="text" class="form-control" id="task" ng-model="form.title">
+        </div>
+        <div class="form-group">
+            <label class="radio-inline"><input type="radio" name="completed" ng-model="form.completed" ng-value=true>Completed</label>
+            <label class="radio-inline"><input type="radio" name="completed" ng-model="form.completed" ng-value=false checked>Panding</label>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
 
-<div class="panel-group" ng-if="!showForm">
-    <div class="panel panel-default" ng-repeat="data in lists">
-        <div class="panel-heading" >{{data.title}} <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"  ng-click="editTask(data)"></span></div>
-        <div class="panel-body">
-            Task status  - 
-            <span ng-if="data.completed">Completed</span> 
-            <span ng-if="!data.completed">Panding</span>
+    <div class="panel-group" ng-if="!showForm">
+        <div class="panel panel-default" ng-repeat="data in lists">
+            <div class="panel-heading" >{{data.title}} <span class="pull-right"><span class="glyphicon glyphicon-pencil " aria-hidden="true"  ng-click="editTask(data)"></span><span class="glyphicon glyphicon-eye-open " aria-hidden="true"   ng-click="getSelectedTask(data.userId)" style="margin-left:15px"></span></span></div>
+            <div class="panel-body">
+                Task status  - 
+                <span ng-if="data.completed">Completed</span> 
+                <span ng-if="!data.completed">Panding</span>
+            </div>
         </div>
     </div>
+</div>
+
+<div ng-if="showSelected">  
+    
+    <h2>Selected Task <button type="button" class="btn btn-link pull-right" ng-click="showSelected = false">back to list</button></h2>
+    <ul class="list-group">
+        <li class="list-group-item">Task <span class="badge">Status</span></li>
+        <li class="list-group-item">
+            {{userTask.title}}
+            <span class="badge">
+                <span ng-if="userTask.completed">Completed</span> 
+                <span ng-if="!userTask.completed">Panding</span>
+            </span>
+        </li>   
+    </ul>
 </div>
